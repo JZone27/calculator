@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator with MySQL Integration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display-container">
+            <input type="text" class="display" id="display" value="0" readonly>
+            <div class="memory-container">
+                <span class="memory-indicator" id="memory-indicator">M</span>
+                <button class="memory-dropdown-toggle" id="memory-toggle">▼</button>
+            </div>
+            <div class="memory-dropdown" id="memory-dropdown">
+                <div class="memory-list" id="memory-list">
+                    <!-- Memory items will be added here dynamically -->
+                    <div class="memory-empty">No stored values</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="calculator-body">
+            <div class="number-systems-container">
+                <div class="number-system clickable" onclick="insertValueToDisplay('hex')">
+                    <span class="unit">HEX</span><span id="hex-value" class="value">0</span>
+                </div>
+                <div class="number-system clickable active" onclick="insertValueToDisplay('dec')">
+                    <span class="unit">DEC</span><span id="dec-value" class="value">0</span>
+                </div>
+                <div class="number-system clickable" onclick="insertValueToDisplay('oct')">
+                    <span class="unit">OCT</span><span id="oct-value" class="value">0</span>
+                </div>
+                <div class="number-system clickable" onclick="insertValueToDisplay('bin')">
+                    <span class="unit">BIN</span><span id="bin-value" class="value">0</span>
+                </div>
+            </div>
+            
+            <div class="calculator-main">
+                <div class="mode-selectors">
+                    <button class="mode-btn" id="programmer-mode">Programmer</button>
+                </div>
+                
+                <div class="buttons">
+                    <div class="hex-buttons">
+                        <button class="btn hex-btn" onclick="appendToDisplay('A')">A</button>
+                        <button class="btn hex-btn" onclick="appendToDisplay('B')">B</button>
+                        <button class="btn hex-btn" onclick="appendToDisplay('C')">C</button>
+                        <button class="btn hex-btn" onclick="appendToDisplay('D')">D</button>
+                        <button class="btn hex-btn" onclick="appendToDisplay('E')">E</button>
+                        <button class="btn hex-btn" onclick="appendToDisplay('F')">F</button>
+                    </div>
+                    
+                    <button class="btn" onclick="clearEntry()">CE</button>
+                    <button class="btn" onclick="backspace()">⌫</button>
+                    <button class="btn" onclick="clearDisplay()">CL</button>
+                    <button class="btn operation" onclick="appendToDisplay('÷')">÷</button>
+                    
+                    <button class="btn" onclick="appendToDisplay('7')">7</button>
+                    <button class="btn" onclick="appendToDisplay('8')">8</button>
+                    <button class="btn" onclick="appendToDisplay('9')">9</button>
+                    <button class="btn operation" onclick="appendToDisplay('*')">×</button>
+                    
+                    <button class="btn" onclick="appendToDisplay('4')">4</button>
+                    <button class="btn" onclick="appendToDisplay('5')">5</button>
+                    <button class="btn" onclick="appendToDisplay('6')">6</button>
+                    <button class="btn operation" onclick="appendToDisplay('-')">−</button>
+                    
+                    <button class="btn" onclick="appendToDisplay('1')">1</button>
+                    <button class="btn" onclick="appendToDisplay('2')">2</button>
+                    <button class="btn" onclick="appendToDisplay('3')">3</button>
+                    <button class="btn operation" onclick="appendToDisplay('+')">+</button>
+                    
+                    <button class="btn" onclick="toggleSign()">+/-</button>
+                    <button class="btn" onclick="appendToDisplay('0')">0</button>
+                    <button class="btn" onclick="appendToDisplay('.')">.</button>
+                    <button class="btn equals" onclick="calculate()">=</button>
+                    <button class="btn save-btn" onclick="saveCurrentValue()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="history">
+        <h3>Calculation History</h3>
+        <div id="history-list" class="clickable-history">
+            <div class="history-empty">No calculations yet</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
